@@ -1,0 +1,65 @@
+Method: Sieve of Eratosthenes
+
+The terminating loop condition can be < √num, as all non-primes ≥ √num must have already been marked off.
+When the loop terminates, all the numbers in the table that are non-marked are prime.
+
+The Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity is O(n log log n).
+
+
+If a number N has a prime factor larger than N−−√ , then it surely has a prime factor smaller than N−−√.
+
+So it's sufficient to search for prime factors in the range [1,N−−√], and then use them in order to compute the prime factors in the range [N−−√,N].
+
+If no prime factors exist in the range [1,N−−√], then N itself is prime and there is no need to continue searching beyond that range.
+
+------------------------------------------------------------------------------------------------------------------------------
+Method 1:
+
+class Solution:
+    def countPrimes(self, num: int) -> int:
+        if num == 0 or num == 1:
+            return 0
+        arr = [True]*num
+        arr[0] = False    # 0 and 1 are not prime numbers
+        arr[1] = False
+
+        import math
+
+
+        for i in range(2,num): # Notice the range in both the methods
+
+            if arr[i] is True:
+                n = 2
+                while i*n < num:
+                    arr[i*n] = False
+                    n += 1
+
+
+        return arr.count(True)
+
+______________________________________________________________________________________________________________________________
+Method 2:
+
+class Solution:
+    def countPrimes(self, num: int) -> int:
+        if num == 0 or num == 1:
+            return 0
+        arr = [True]*num
+        arr[0] = False
+        arr[1] = False
+
+        import math
+
+
+        for i in range(2,int(math.sqrt(num))+1):
+
+            if arr[i] is True:
+                n = 2
+                while i*n < num:
+                    arr[i*n] = False
+                    n += 1
+
+
+        return arr.count(True)
+
+        
