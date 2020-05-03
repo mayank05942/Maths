@@ -1,0 +1,20 @@
+
+--> Print all the prime factors of a given number
+
+
+lis = []
+
+for i in range(2,n+1): # smallest prime factor is 2 and at max it can be divisible by itself
+    if n % i == 0:   # then i is a prime factor of n
+        count = 0    # to count how many times it is divisible by it
+        while n % i == 0:
+            n = n / i
+            count += 1
+        lis.append((i,count))    # To keep a track of prime factor and how many times it will appear
+
+ans = []
+for items in lis:
+  for _ in range(items[1]):
+      ans.append(items[0])
+      
+print(ans)
