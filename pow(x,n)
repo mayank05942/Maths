@@ -1,0 +1,43 @@
+
+Method1: O(n) Solution [ Recursive sol]  ---> Will fail some test cases ( TLE error)
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        
+        def power(x,n):
+            if n < 0:
+                n = abs(n)
+                x = 1/x
+            if n == 0:
+                return 1
+            if n == 1:
+                return x
+            else:
+                return x * power(x,n-1)
+                    
+        return power(x,n)
+        
+______________________________________________________________________________________________________________________________________
+
+Method 2: O(logn) Solution [ Divide and conqueror]  --> Pass all test cases
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        
+        def power(x,n):
+            
+            if n < 0:        # To handle case when n is negative
+                n = abs(n)   
+                x = 1/x
+                
+            if n == 0:       # Base case of recursion
+                return 1
+            
+            elif  n % 2 == 0:     # if n is even then we just need to calcuate till half power and the result can be doubled.
+                temp = power(x,n/2)  # Calling recursion for half n
+                return temp*temp    
+            else:
+                return x * power(x,n-1)   # if n is odd then normal recursion case.
+                    
+        return power(x,n)
+        
