@@ -1,0 +1,25 @@
+num = 1
+
+# Decimal to binary
+
+lis = []
+while num > 0:
+    lis.append(num%2)
+    num = num // 2
+
+
+# complement operation
+res = []       
+for items in lis:
+    if items == 1:
+        res.append(0)
+    else:
+        res.append(1)
+
+
+# binary to decimal
+ans = 0
+for n in range(len(res)):
+    ans += res[n]*(2**n)
+
+print(ans)
