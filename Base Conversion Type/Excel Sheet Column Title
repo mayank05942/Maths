@@ -5,3 +5,16 @@ Explanation:
 ______________________________________________________________________________________
 
 Code:
+
+class Solution:
+    def convertToTitle(self, n: int) -> str:
+        d = [ chr(i) for i in range(ord('A'), ord('Z')+1)]
+        # each char is mapped with the index
+        
+        lis = []
+        while n:
+            lis.append(d[(n-1) % 26])
+            n = (n-1) // 26
+        lis.reverse()
+        return  "".join(lis)
+       
