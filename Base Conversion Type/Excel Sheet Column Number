@@ -1,0 +1,26 @@
+Prob: https://leetcode.com/problems/excel-sheet-column-number/
+__________________________________________________________________________________________________
+
+Explanation:
+
+Here is the base of number system is 26 -> 26^3 * number +26 ^ 2 * number +..........
+_________________________________________________________________________________________________
+
+COde:
+
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        
+        num = [i for i in range(1,27)]
+        i = [chr(i) for i in range(ord('A'),ord('Z')+1)]
+        d= {}
+        for x,y in zip(num,i):
+            d[y] = x
+        
+        s = s[::-1]
+        ans = 0
+        for i in range(len(s)):
+            ans += (26 ** i * d[s[i]])
+            
+        return ans
+        
